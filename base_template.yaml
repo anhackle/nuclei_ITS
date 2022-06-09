@@ -1,0 +1,22 @@
+id: XSS
+
+info:
+  name: Detect XSS vulnerabilities
+  author: ITS
+  severity: medium
+  description: Find XSS vulnerabilities in parameters
+  reference: https://owasp.org/www-community/attacks/xss/
+  tags: xss
+
+requests:
+  - raw:
+    - |
+        {raw_request}
+
+    matchers:
+      - type: word
+        words:
+          - <script>alert(1)</script>
+          - <img src=1 onerror='alert(1)'>
+        condition: or
+        part: body
