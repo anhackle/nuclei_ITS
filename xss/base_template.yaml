@@ -13,10 +13,14 @@ requests:
     - |
         {raw_request}
 
+    payloads:
+      fuzz: /payload/payload.txt
+    attack: pitchfork # Defining HTTP fuzz attack type
+
     matchers:
       - type: word
         words:
           - <script>alert(1)</script>
-          - <img src=1 onerror='alert(1)'>
+          - <img src="1" onerror="alert(1)">
         condition: or
         part: body
