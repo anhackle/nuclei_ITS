@@ -1,5 +1,6 @@
 from user_input.find_user_input import *
 from add_on.add_on import *
+import platform
 
 
 VULNERABILITIES = []
@@ -17,7 +18,10 @@ def generate_template(path, data_file): # /target/paypal/non_authentication/1/
         # Find all user inputs in each request
         request = find_user_input(request)
 
-        request = request.replace('\r\n', '\r\n        ')
+        if (platform.system == 'Windows'):
+            request = request.replace('\r\n', '\r        ')
+        else:
+            request = request.replace('\r\n', '\r\n        ')
 
         # Delete front-end request like js, svg, map,...
         if filter_extension(request):
