@@ -12,4 +12,7 @@ for program in programs:
         child_parts = get_list_child_part(program, part)
         for child_part in child_parts:
             path, data_file = get_name_data_file(program, part, child_part)
-            generate_template(path, data_file)
+            if ('.json' in data_file):
+                generate_template(path, data_file)
+            else: 
+                continue

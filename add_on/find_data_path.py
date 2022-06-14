@@ -1,7 +1,7 @@
 import pathlib
 import os
 
-BASE_PATH = '/target'
+BASE_PATH = '/home/target'
 
 def get_list_program():
     return os.listdir(BASE_PATH)
