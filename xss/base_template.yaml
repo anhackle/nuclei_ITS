@@ -14,7 +14,7 @@ requests:
         {raw_request}
 
     payloads:
-      fuzz: /home/payload/payload.txt
+      fuzz: /home/anhackle/payload/payload.txt
     attack: pitchfork # Defining HTTP fuzz attack type
 
     matchers-condition: and

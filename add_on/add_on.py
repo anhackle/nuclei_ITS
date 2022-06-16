@@ -1,8 +1,6 @@
 import base64
 import json
 
-LIST_REQUESTS = []
-BASE_DUPLICATE = []
 EXTENSIONS = ['svg', 'js', 'map', 'css', 'gif', 'jpg', '.ico']
 
 def decode_base64(base64text):
@@ -10,12 +8,13 @@ def decode_base64(base64text):
 
 
 def parse_json_burpsuite(data_file):
+    requests = []
     with open(data_file, 'r') as f:
-        requests = json.load(f)
-        for request in requests:
-            LIST_REQUESTS.append(decode_base64(request['request']))
+        data = json.load(f)
+        for request in data:
+            requests.append(decode_base64(request['request']))
 
-    return list(set(LIST_REQUESTS))
+    return list(set(requests))
 
 
 def filter_extension(raw_request):
@@ -29,10 +28,11 @@ def filter_extension(raw_request):
     return False
 
 
-def delete_duplicate_request(LIST_REQUESTS):
+def delete_duplicate_request(requests):
     result = []
+    BASE_DUPLICATE = []
 
-    for request in LIST_REQUESTS:
+    for request in requests:
         method_and_path = request.split('\r\n')[0].split(' ')[:2]
 
         if (method_and_path not in BASE_DUPLICATE):
