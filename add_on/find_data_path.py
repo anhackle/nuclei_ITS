@@ -1,4 +1,3 @@
-import pathlib
 import os
 
 BASE_PATH = '/home/anhackle/target'

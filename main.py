@@ -1,7 +1,4 @@
 from add_on.find_data_path import *
-from add_on.find_data_path import get_list_child_part
-from add_on.find_data_path import get_name_data_file
-from add_on.find_data_path import get_list_asset
 from generate_template import *
 
 

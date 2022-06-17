@@ -12,7 +12,6 @@ CONTENT_TYPE = ['application/json', 'application/xml', 'application/x-www-form-u
 def generate_template(path, data_file): # /target/paypal/non_authentication/1/
     # Parse base64 json from burpsutie
     file_name = f"{path}/{data_file}"
-    print(file_name)
     requests = parse_json_burpsuite(file_name)
 
     # Rename after parsing 
@@ -25,7 +24,7 @@ def generate_template(path, data_file): # /target/paypal/non_authentication/1/
         # Find all user inputs in each request
         request = find_user_input(request)
 
-        if (platform.system == 'Windows'):
+        if (platform.system() == 'Windows'):
             request = request.replace('\r\n', '\r        ')
         else:
             request = request.replace('\r\n', '\r\n        ')
