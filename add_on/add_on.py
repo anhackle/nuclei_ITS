@@ -4,15 +4,17 @@ import json
 EXTENSIONS = ['svg', 'js', 'map', 'css', 'gif', 'jpg', '.ico']
 
 def decode_base64(base64text):
-    return base64.b64decode(base64text.encode('utf-8')).decode('utf-8')
+    return base64.b64decode(base64text.encode('utf-8')).decode('latin1')
 
 
 def parse_json_burpsuite(data_file):
     requests = []
-    with open(data_file, 'r') as f:
+    with open(data_file, 'r', encoding='latin1') as f:
         data = json.load(f)
         for request in data:
-            requests.append(decode_base64(request['request']))
+            #requests.append(decode_base64(request['request']))
+            #requests.append(request['Request']['Headers'])
+            requests.append(f"{request['Request']['Headers']}\r\n{request['Request']['Body']}")
 
     return list(set(requests))
 
