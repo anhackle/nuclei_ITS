@@ -37,9 +37,10 @@ def generate_template(path, data_file): # /target/paypal/non_authentication/1/
             with open(f"./vuln/{vuln}/base_template.yaml", 'r') as f:
                 # Generate template
                 base_template = f.read()
-                template = base_template.format(raw_request = request)
-                
                 # Set name for template
                 template_name = f"{current_day}_{id}_{vuln}"
+
+                template = base_template.format(id = template_name, raw_request = request)
+                
                 with open(f"{path}/{template_name}.yaml", 'w') as f1:
                     f1.write(template)

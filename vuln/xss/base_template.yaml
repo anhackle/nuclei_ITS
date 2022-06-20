@@ -1,4 +1,4 @@
-id: XSS
+id: {id}
 
 info:
   name: Detect XSS vulnerabilities
