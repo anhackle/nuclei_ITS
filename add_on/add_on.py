@@ -19,15 +19,23 @@ def parse_json_burpsuite(data_file):
     return list(set(requests))
 
 
-def filter_extension(raw_request):
-    line = raw_request.split('\r\n')[0]
-    path = line.split(' ')
+def filter_extension(requests):
+    result = []
+    for request in requests:
+        flag = False
 
-    for extension in EXTENSIONS:
-        if extension in path[1]:
-            return True
+        line = request.split('\r\n')[0]
+        path = line.split(' ')
 
-    return False
+        for extension in EXTENSIONS:
+            if extension in path[1]:
+                flag = True
+                break
+
+        if (not flag):
+            result.append(request)
+            
+    return result
 
 
 def delete_duplicate_request(requests):
