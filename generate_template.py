@@ -4,10 +4,7 @@ import os
 import platform
 from datetime import date
 
-
-VULNERABILITIES = []
 CONTENT_TYPE = ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'multipart/form-data']
-
 
 def generate_template(path, data_file): # /target/paypal/non_authentication/1/
     # Get current day
@@ -38,9 +35,11 @@ def generate_template(path, data_file): # /target/paypal/non_authentication/1/
         # Generate template from base template
         for vuln in os.listdir('./vuln'):
             with open(f"./vuln/{vuln}/base_template.yaml", 'r') as f:
+                # Generate template
                 base_template = f.read()
                 template = base_template.format(raw_request = request)
                 
+                # Set name for template
                 template_name = f"{current_day}_{id}_{vuln}"
                 with open(f"{path}/{template_name}.yaml", 'w') as f1:
                     f1.write(template)

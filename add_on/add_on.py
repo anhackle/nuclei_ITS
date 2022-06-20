@@ -14,7 +14,7 @@ def parse_json_burpsuite(data_file):
         for request in data:
             #requests.append(decode_base64(request['request']))
             #requests.append(request['Request']['Headers'])
-            requests.append(f"{request['Request']['Headers']}\r\n{request['Request']['Body']}")
+            requests.append(f"{request['Request']['Headers']}\r\n\r\n{request['Request']['Body']}")
 
     return list(set(requests))
 
