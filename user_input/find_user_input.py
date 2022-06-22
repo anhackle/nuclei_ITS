@@ -17,9 +17,9 @@ def determine_body_data(raw_request, content_type):
     if (content_type == 'No header'):
         return raw_request
     else:
-        if (content_type == 'application/x-www-form-urlencoded'):
+        if ('application/x-www-form-urlencoded' in content_type):
             return traditional_post(raw_request)
-        elif (content_type == 'application/json'):
+        elif ('application/json' in content_type):
             return json_post(raw_request)
     return raw_request
 
